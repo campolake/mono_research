@@ -36,14 +36,16 @@ g_free (void *ptr)
 		free (ptr);
 }
 
+/*内存复制,*/
 gpointer
 g_memdup (gconstpointer mem, guint byte_size)
 {
 	gpointer ptr;
-
+	//如果要复制的内存为空，直接返回
 	if (mem == NULL)
 		return NULL;
-
+	//申请内存，并判断是否申请成功，如果申请成功，则将mem的内容复制到新申请的内存处
+	//如果没有申请成功，则返回NULL
 	ptr = g_malloc (byte_size);
 	if (ptr != NULL)
 		memcpy (ptr, mem, byte_size);
